@@ -1,0 +1,44 @@
+#!/bin/zsh
+plugins=()
+plugin_cmd[*]=()
+
+show_help() {
+cat <<EOF
+Usage: ${0##*/} [-h] [-p]
+
+    -p --plugin [name]        use plugin
+EOF
+}
+
+while [ "${#@}" -ne "0" ]; do
+    case "$1" in
+        -h | --help)
+            show_help
+            exit 0
+            ;;
+        -p | --plugin)
+            plugins=($plugins $2)
+            plugin_cmd=($plugin_cmd "-v$PLUGIN_DIR/$2:/src/plugins/$2")
+            shift
+            ;;
+        *)
+            echo "unexpected argument: $1" >& 2
+            show_help >& 2
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+[ $plugins[1] ] && echo "Using plugins:    ${plugins[*]}"
+
+mkdir -p "${DATA_DIR}"
+
+running_container=$(sudo docker ps -q --filter ancestor=discourse/discourse_dev:release)
+[ $running_container ] && sudo docker stop $running_container
+existing_container=$(sudo docker ps -q -a --filter name=$NAME)
+[ $existing_container ] && remove
+
+sudo docker run -d -p 1080:1080 -p 3000:3000 -v "$DATA_DIR:/shared/postgres_data" -v "$SOURCE_DIR:/src" $plugin_cmd --hostname=discourse --name=$NAME discourse/discourse_dev:release /sbin/boot
+
+update

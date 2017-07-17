@@ -1,0 +1,7 @@
+#!/bin/zsh
+echo "Installing gems..."
+bundle install
+
+echo "Migrating database..."
+rake db:migrate
+RAILS_ENV=test rake db:migrate

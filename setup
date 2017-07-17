@@ -1,0 +1,16 @@
+export SCRIPTPATH=$(cd "$(dirname "$0")"; pwd -P)
+export SOURCE_DIR=$(cd "$SCRIPTPATH" && cd ../discourse && pwd -P)
+export PLUGIN_DIR=$(cd "$SOURCE_DIR" && cd .. && pwd -P)
+
+[ $1 ] && export NAME="discourse_dev_$1" || export NAME="discourse_dev"
+export DATA_DIR="$SOURCE_DIR/data/$NAME/postgres"
+
+export RAILS_ENV=development
+
+export PROMPT="%{$fg[yellow]%}$NAME > %{$reset_color%}"
+export PATH="${SCRIPTPATH}:${PATH}"
+
+echo "Using name:       ${NAME}"
+echo "Using source in:  ${SOURCE_DIR}"
+echo "Using data in:    ${DATA_DIR}"
+echo "Using plugins in: ${PLUGIN_DIR}"

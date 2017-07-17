@@ -1,0 +1,3 @@
+#!/bin/zsh
+PARAMS="$@"
+e bundle $PARAMS

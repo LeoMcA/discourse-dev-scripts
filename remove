@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+sudo docker rm -f $NAME
