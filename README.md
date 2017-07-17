@@ -7,13 +7,13 @@ _Some scripts to help with setting up Discourse development environments in dock
 Clone the repo:
 
 ```
-# git clone https://github.com/LeoMcA/discourse-dev-scripts.git
+$ git clone https://github.com/LeoMcA/discourse-dev-scripts.git
 ```
 
 Setup a `mozilla` environment:
 
 ```
-# source ./discourse-dev-scripts/setup mozilla
+$ source ./discourse-dev-scripts/setup mozilla
 Using name:       discourse_dev_mozilla
 Using source in:  /home/foxy/Projects/discourse
 Using data in:    /home/foxy/Projects/discourse/data/discourse_dev_mozilla/postgres
@@ -23,19 +23,19 @@ Using plugins in: /home/foxy/Projects
 Create and start the docker container, with the `discourse-mozilla-iam` and `discourse-expose-emails-in` plugins installed:
 
 ```
-create -p discourse-mozilla-iam -p discourse-expose-emails-in
+$ create -p discourse-mozilla-iam -p discourse-expose-emails-in
 ```
 
 Start the rails server:
 
 ```
-rails s
+$ rails s
 ```
 
 Run `an arbitrary command` in the docker container:
 
 ```
-e an arbitrary command
+$ e an arbitrary command
 ```
 
 ## Scripts
