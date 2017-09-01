@@ -1,0 +1,3 @@
+#!/bin/zsh
+PARAMS="$@"
+sudo docker exec -it -u postgres $NAME /bin/bash -c "psql $PARAMS"
