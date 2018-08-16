@@ -43,7 +43,7 @@ $ e an arbitrary command
 * `bundle` - run bundle in the container
 * `create` - create a container
 * `e` - run a command in the container
-* `nuke_db` - drop, create and then migrate the database
+* `nuke_test_db` - drop, create and then migrate the test database
 * `plugin_test` - run plugin tests, takes two arguments: `all | coverage | spec | qunit` and the plugin's name
 * `psql` - run psql in the container
 * `rails` - run rails in the container
