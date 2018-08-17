@@ -54,6 +54,7 @@ $ e an arbitrary command
 * `start` - start and `update` the container
 * `stop` - stop the container
 * `sudo_e` - run a command in the container as root
+* `unicorn` - run the server with unicorn, see: https://meta.discourse.org/t/change-unicorn-port-from-3000-in-development/94737/5?u=leomca
 * `update` - run bundle updates and database migrations in the container
 
 ## Limitations

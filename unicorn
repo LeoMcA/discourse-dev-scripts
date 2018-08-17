@@ -1,0 +1,3 @@
+#!/bin/bash
+
+e bin/unicorn -p 3000
