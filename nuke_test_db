@@ -4,3 +4,4 @@ psql "-c 'ALTER USER discourse WITH SUPERUSER;'"
 RAILS_ENV=test rake db:drop
 RAILS_ENV=test rake db:create
 RAILS_ENV=test rake db:migrate
+RAILS_ENV=test LOAD_PLUGINS=1 rake db:migrate
