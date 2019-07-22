@@ -1,12 +1,14 @@
 #!/bin/zsh
 plugins=()
 plugin_cmd[*]=()
+bind="127.0.0.1"
 
 show_help() {
 cat <<EOF
 Usage: ${0##*/} [-h] [-p]
 
     -p --plugin [name]        use plugin
+    -b --bind [ip]            bind to ip (default 127.0.0.1)
 EOF
 }
 
@@ -19,6 +21,10 @@ while [ "${#@}" -ne "0" ]; do
         -p | --plugin)
             plugins=($plugins $2)
             plugin_cmd=($plugin_cmd "-v$PLUGIN_DIR/$2:/src/plugins/$2")
+            shift
+            ;;
+        -b | --bind)
+            bind=$2
             shift
             ;;
         *)
@@ -39,6 +45,6 @@ running_container=$(sudo docker ps -q --filter ancestor=discourse/discourse_dev:
 existing_container=$(sudo docker ps -q -a --filter name=$NAME)
 [ $existing_container ] && remove
 
-sudo docker run -d -p 1080:1080 -p 3000:3000 -v "$DATA_DIR:/shared/postgres_data" -v "$SOURCE_DIR:/src" $plugin_cmd --hostname=discourse --name=$NAME discourse/discourse_dev:release /sbin/boot
+sudo docker run -d -p $bind:1080:1080 -p $bind:3000:3000 -v "$DATA_DIR:/shared/postgres_data" -v "$SOURCE_DIR:/src" $plugin_cmd --hostname=discourse --name=$NAME discourse/discourse_dev:release /sbin/boot
 
 update

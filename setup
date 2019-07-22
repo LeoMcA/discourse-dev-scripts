@@ -10,8 +10,6 @@ export RAILS_ENV=development
 export PROMPT="%{$fg[yellow]%}$NAME > %{$reset_color%}"
 export PATH="${SCRIPTPATH}:${PATH}"
 
-export DISCOURSE_DEV_ALLOW_ANON_TO_IMPERSONATE=1
-
 echo "Using name:       ${NAME}"
 echo "Using source in:  ${SOURCE_DIR}"
 echo "Using data in:    ${DATA_DIR}"
